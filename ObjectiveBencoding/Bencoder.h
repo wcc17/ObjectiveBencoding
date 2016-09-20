@@ -13,5 +13,6 @@
 + (NSString *) encode:(NSObject *) objectToEncode;
 + (NSString *) encodeString:(NSString *) stringToEncode;
 + (NSString *) encodeInteger:(NSNumber *) integerToEncode;
++ (NSString *) encodeList:(NSMutableArray *) mutableArrayToEncode;
 
 @end

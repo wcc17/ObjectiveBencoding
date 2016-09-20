@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "ObjectiveBencoding/Bencoder.m"
-            timestampString = "495916865.285372"
+            timestampString = "496073628.215966"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "+encodeInteger:"
             landmarkType = "7">
          </BreakpointContent>
