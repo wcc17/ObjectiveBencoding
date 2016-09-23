@@ -13,6 +13,9 @@
 + (NSString *) encode:(NSObject *) objectToEncode;
 + (NSString *) encodeString:(NSString *) stringToEncode;
 + (NSString *) encodeInteger:(NSNumber *) integerToEncode;
-+ (NSString *) encodeList:(NSMutableArray *) mutableArrayToEncode;
++ (NSString *) encodeList:(NSArray *) arrayToEncode;
++ (NSString *) encodeDictionary:(NSDictionary *) dictionaryToEncode;
+
++ (NSArray *) getBinarySortedKeys:(NSArray *) keysToSort;
 
 @end

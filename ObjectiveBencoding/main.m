@@ -32,10 +32,30 @@ int main(int argc, const char * argv[]) {
                                                                     [NSNumber numberWithLong:382340958309458930], nil];
         NSMutableArray *testArray3 = [NSMutableArray arrayWithObjects:@"this is a string", [NSNumber numberWithInt:1], nil];
         NSMutableArray *testArray4 = [NSMutableArray arrayWithObjects:@"this is a string", testArray3, [NSNumber numberWithInt:-27], nil];
-        NSString *testEncodedArray1 = [Bencoder encode:testArray1];
-        NSString *testEncodedArray2 = [Bencoder encode:testArray2];
-        NSString *testEncodedArray3 = [Bencoder encode:testArray3];
-        NSString *testEncodedArray4 = [Bencoder encode:testArray4];
+        
+        //test dictionary
+        NSDictionary *testDictionary1 = @{
+                                          @"akey" : [NSNumber numberWithInt:0],
+                                          @"dkey" : [NSNumber numberWithLong:382340958309458930],
+                                          @"ckey" : [NSNumber numberWithInt:278],
+                                          @"fkey" : [NSNumber numberWithInt:-28],
+                                          };
+        NSDictionary *testDictionary2 = @{
+                                          @"zkey" : @"this is a string",
+                                          @"qkey" : @"thisisastringtoo",
+                                          @"rkey" : @"",
+                                          @"ykey" : @" ",
+                                          };
+        NSDictionary *testDictionary3 = @{
+                                           @"mkey" : @"woo string",
+                                           @"nkey" : [NSNumber numberWithInt:27],
+                                           @"okey" : testArray1,
+                                           @"pkey" : testDictionary2
+                                           };
+        NSDictionary *testDictionary4 = @{
+                                          @"spam" : @"eggs",
+                                          @"cow" : @"moo"
+                                          };
         
         NSLog(@" ");
         
@@ -58,11 +78,19 @@ int main(int argc, const char * argv[]) {
         NSLog(@" ");
         
         //print encoded lists
-        NSLog(@"Encoded list with strings: %@", testEncodedArray1);
-        NSLog(@"Encoded list with integers: %@", testEncodedArray2);
-        NSLog(@"Encoded list with strings and integers: %@", testEncodedArray3);
-        NSLog(@"Encoded list with string, integers, and a list: %@", testEncodedArray4);
+        NSLog(@"Encoded list with strings: %@", [Bencoder encode:testArray1]);
+        NSLog(@"Encoded list with integers: %@", [Bencoder encode:testArray2]);
+        NSLog(@"Encoded list with strings and integers: %@", [Bencoder encode:testArray3]);
+        NSLog(@"Encoded list with string, integers, and a list: %@", [Bencoder encode:testArray4]);
         
+        NSLog(@" ");
+        
+        //print encoded dictionaries
+        //TODO: need ability to have multiple values for one key!
+        NSLog(@"Encoded dictionary with integers as values: %@", [Bencoder encode:testDictionary1]);
+        NSLog(@"Encoded dictionary with integers as values: %@", [Bencoder encode:testDictionary2]);
+        NSLog(@"Encoded dictionary with integers as values: %@", [Bencoder encode:testDictionary3]);
+        NSLog(@"Encoded dictionary with integers as values: %@", [Bencoder encode:testDictionary4]);
     }
     return 0;
 }

@@ -14,22 +14,19 @@
 
 + (NSString *)encode:(NSObject *)objectToEncode {
     if([objectToEncode isKindOfClass:[NSString class]]) {
-        NSLog(@"Object is a string with value: %@", objectToEncode);
-         return [self encodeString:((NSString *)objectToEncode)];
+         return [self encodeString:(NSString *)objectToEncode];
     } else if([objectToEncode isKindOfClass:[NSNumber class]]) {
-        NSLog(@"Object is an integer with value: %@", objectToEncode);
-        return [self encodeInteger:((NSNumber *)objectToEncode)];
+        return [self encodeInteger:(NSNumber *)objectToEncode];
     } else if([objectToEncode isKindOfClass:[NSMutableArray class]]) {
-        NSLog(@"Object is a list [with value: %@", objectToEncode);
-        return [self encodeList:((NSMutableArray *)objectToEncode)];
+        return [self encodeList:(NSMutableArray *)objectToEncode];
+    } else if([objectToEncode isKindOfClass:[NSDictionary class]]) {
+        return [self encodeDictionary:(NSDictionary *)objectToEncode];
     }
     
     return nil;
 }
 
 + (NSString *) encodeString:(NSString *) stringToEncode {
-    NSLog(@"String to encode: %@", stringToEncode);
-    
     NSInteger stringLength = stringToEncode.length;
     NSString *encodedString = [NSString stringWithFormat:@"%tu:%@", stringLength, stringToEncode];
     
@@ -37,24 +34,65 @@
 }
 
 + (NSString *) encodeInteger:(NSNumber *) integerToEncode {
-    NSLog(@"Integer to encode: %@", integerToEncode);
-    
     NSString *encodedInteger;
     encodedInteger = [NSString stringWithFormat:@"i%@e", [integerToEncode stringValue]];
     
     return encodedInteger;
 }
 
-+ (NSString *) encodeList:(NSMutableArray *) mutableArrayToEncode {
++ (NSString *) encodeList:(NSArray *) arrayToEncode {
     NSString *encodedList = @"l";
     
-    for(NSObject *objectToEncode in mutableArrayToEncode) {
-        encodedList = [encodedList stringByAppendingString: [self encode:(objectToEncode)]];
+    for(NSObject *objectToEncode in arrayToEncode) {
+        encodedList = [encodedList stringByAppendingString: [self encode:objectToEncode]];
     }
     
     encodedList = [encodedList stringByAppendingString: @"e"];
     
     return encodedList;
+}
+
+//TODO: need to be able to get multiple values for one key
++ (NSString *) encodeDictionary:(NSDictionary *) dictionaryToEncode {
+    //TODO: keys must be strings
+    
+    NSString *encodedDictionary = @"d";
+    NSArray *sortedKeys = [self getBinarySortedKeys:[dictionaryToEncode allKeys]];
+    
+    for(NSString *key in sortedKeys) {
+        encodedDictionary = [encodedDictionary stringByAppendingString: [self encode:key]];
+        encodedDictionary = [encodedDictionary stringByAppendingString: [self encode:[dictionaryToEncode valueForKey:key]]];
+    }
+    
+    encodedDictionary = [encodedDictionary stringByAppendingString: @"e"];
+    
+    return encodedDictionary;
+}
+
+//TODO: this isn't working properly yet. need to be sorting strings by their binary representation, not alphanumerically
++ (NSArray *) getBinarySortedKeys:(NSArray *) keysToSort {
+    const char *cStyleKeys[(int) [keysToSort count]];
+    
+    for(int i = 0; i < [keysToSort count]; i++) {
+        NSString *key = keysToSort[i];
+        cStyleKeys[i] = [key UTF8String];
+    }
+    
+    //sort the keys
+    qsort(cStyleKeys, [keysToSort count], sizeof(cStyleKeys[0]), cmpfunc);
+    
+    NSMutableArray *sortedKeys = [[NSMutableArray alloc] init];
+    for(int i = 0; i < [keysToSort count]; i++) {
+        NSString * str = @(cStyleKeys[i]);
+        sortedKeys[i] = str;
+    }
+    
+    return sortedKeys;
+}
+
+int cmpfunc(const void *a, const void *b)
+{
+    return ( *(int*)a - *(int*)b );
 }
 
 @end
