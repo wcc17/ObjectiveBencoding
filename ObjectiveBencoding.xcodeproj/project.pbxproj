@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1276E6201D8E5A4500B32B00 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1276E61F1D8E5A4500B32B00 /* main.m */; };
 		1276E6281D8E5A6100B32B00 /* Bencoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 1276E6271D8E5A6100B32B00 /* Bencoder.m */; };
+		12DBD7831D98BFCB001EFE98 /* Bdecoder.m in Sources */ = {isa = PBXBuildFile; fileRef = 12DBD7821D98BFCB001EFE98 /* Bdecoder.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,8 @@
 		1276E61F1D8E5A4500B32B00 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1276E6261D8E5A5C00B32B00 /* Bencoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bencoder.h; sourceTree = "<group>"; };
 		1276E6271D8E5A6100B32B00 /* Bencoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bencoder.m; sourceTree = "<group>"; };
+		12DBD7821D98BFCB001EFE98 /* Bdecoder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Bdecoder.m; sourceTree = "<group>"; };
+		12DBD7841D98BFDE001EFE98 /* Bdecoder.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bdecoder.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +66,8 @@
 				1276E6271D8E5A6100B32B00 /* Bencoder.m */,
 				1276E6261D8E5A5C00B32B00 /* Bencoder.h */,
 				1276E61F1D8E5A4500B32B00 /* main.m */,
+				12DBD7821D98BFCB001EFE98 /* Bdecoder.m */,
+				12DBD7841D98BFDE001EFE98 /* Bdecoder.h */,
 			);
 			path = ObjectiveBencoding;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1276E6201D8E5A4500B32B00 /* main.m in Sources */,
+				12DBD7831D98BFCB001EFE98 /* Bdecoder.m in Sources */,
 				1276E6281D8E5A6100B32B00 /* Bencoder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -252,6 +258,7 @@
 				1276E6251D8E5A4500B32B00 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

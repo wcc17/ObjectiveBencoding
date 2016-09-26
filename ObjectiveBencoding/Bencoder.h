@@ -16,6 +16,6 @@
 + (NSString *) encodeList:(NSArray *) arrayToEncode;
 + (NSString *) encodeDictionary:(NSDictionary *) dictionaryToEncode;
 
-+ (NSArray *) getBinarySortedKeys:(NSArray *) keysToSort;
+//+ (NSArray *) getBinarySortedKeys:(NSArray *) keysToSort;
 
 @end

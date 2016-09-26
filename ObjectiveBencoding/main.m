@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Bencoder.h"
+#import "Bdecoder.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
@@ -91,6 +92,11 @@ int main(int argc, const char * argv[]) {
         NSLog(@"Encoded dictionary with integers as values: %@", [Bencoder encode:testDictionary2]);
         NSLog(@"Encoded dictionary with integers as values: %@", [Bencoder encode:testDictionary3]);
         NSLog(@"Encoded dictionary with integers as values: %@", [Bencoder encode:testDictionary4]);
+        
+        
+        
+        //decoding testing
+        [Bdecoder decode:nil];
     }
     return 0;
 }

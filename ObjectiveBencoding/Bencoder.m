@@ -57,9 +57,9 @@
     //TODO: keys must be strings
     
     NSString *encodedDictionary = @"d";
-    NSArray *sortedKeys = [self getBinarySortedKeys:[dictionaryToEncode allKeys]];
+//    NSArray *sortedKeys = [self getBinarySortedKeys:[dictionaryToEncode allKeys]];
     
-    for(NSString *key in sortedKeys) {
+    for(NSString *key in [dictionaryToEncode allKeys]) {
         encodedDictionary = [encodedDictionary stringByAppendingString: [self encode:key]];
         encodedDictionary = [encodedDictionary stringByAppendingString: [self encode:[dictionaryToEncode valueForKey:key]]];
     }
@@ -70,29 +70,29 @@
 }
 
 //TODO: this isn't working properly yet. need to be sorting strings by their binary representation, not alphanumerically
-+ (NSArray *) getBinarySortedKeys:(NSArray *) keysToSort {
-    const char *cStyleKeys[(int) [keysToSort count]];
-    
-    for(int i = 0; i < [keysToSort count]; i++) {
-        NSString *key = keysToSort[i];
-        cStyleKeys[i] = [key UTF8String];
-    }
-    
-    //sort the keys
-    qsort(cStyleKeys, [keysToSort count], sizeof(cStyleKeys[0]), cmpfunc);
-    
-    NSMutableArray *sortedKeys = [[NSMutableArray alloc] init];
-    for(int i = 0; i < [keysToSort count]; i++) {
-        NSString * str = @(cStyleKeys[i]);
-        sortedKeys[i] = str;
-    }
-    
-    return sortedKeys;
-}
-
-int cmpfunc(const void *a, const void *b)
-{
-    return ( *(int*)a - *(int*)b );
-}
+//+ (NSArray *) getBinarySortedKeys:(NSArray *) keysToSort {
+//    const char *cStyleKeys[(int) [keysToSort count]];
+//    
+//    for(int i = 0; i < [keysToSort count]; i++) {
+//        NSString *key = keysToSort[i];
+//        cStyleKeys[i] = [key UTF8String];
+//    }
+//    
+//    //sort the keys
+//    qsort(cStyleKeys, [keysToSort count], sizeof(cStyleKeys[0]), cmpfunc);
+//    
+//    NSMutableArray *sortedKeys = [[NSMutableArray alloc] init];
+//    for(int i = 0; i < [keysToSort count]; i++) {
+//        NSString * str = @(cStyleKeys[i]);
+//        sortedKeys[i] = str;
+//    }
+//    
+//    return sortedKeys;
+//}
+//
+//int cmpfunc(const void *a, const void *b)
+//{
+//    return ( *(int*)a - *(int*)b );
+//}
 
 @end
